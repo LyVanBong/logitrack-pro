@@ -2,6 +2,7 @@ import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
 import { ChatWidget } from '@/components/features/chat-widget';
 import { CommandPalette } from '@/components/layout/command-palette';
+import { MarketingPopup } from '@/components/features/marketing-popup';
 
 export default function DashboardLayout({children}: {children: React.ReactNode}) {
   return (
@@ -15,6 +16,7 @@ export default function DashboardLayout({children}: {children: React.ReactNode})
       </div>
       <ChatWidget />
       <CommandPalette />
+      <MarketingPopup />
     </div>
   );
 }
