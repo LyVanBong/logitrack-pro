@@ -92,18 +92,50 @@ export default function Dashboard() {
             <CardTitle>Biểu đồ Doanh thu (7 ngày)</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
-             <div className="h-[300px] w-full flex items-end justify-between px-4 pb-4 gap-2 border-b border-l border-slate-200 dark:border-slate-800">
-                {[40, 60, 45, 80, 55, 90, 70].map((height, i) => (
-                  <div key={i} className="w-full flex justify-center items-end group relative">
-                    <div 
-                      className="w-4/5 bg-primary/20 hover:bg-primary transition-colors rounded-t-sm" 
-                      style={{ height: `${height}%` }}
-                    />
-                    <div className="absolute -bottom-6 text-xs text-slate-500">
-                      T{i+2}
+             <div className="relative h-[300px] w-full mt-4 pl-12 pb-6">
+                {/* Y-Axis (Cột tung) Grid Lines & Labels */}
+                <div className="absolute inset-0 left-12 bottom-6 flex flex-col justify-between border-b border-l border-slate-200 dark:border-slate-800">
+                  {[150, 100, 50, 0].map((val, i) => (
+                    <div key={i} className="relative w-full border-t border-slate-100 dark:border-slate-800/50 h-0">
+                      <span className="absolute -left-12 -top-2.5 text-xs text-slate-400 w-10 text-right pr-2">
+                        {val > 0 ? `${val}tr` : '0'}
+                      </span>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
+                {/* Bars & X-Axis (Cột hoành) */}
+                <div className="absolute inset-0 left-12 bottom-6 flex items-end justify-between px-2 gap-2 z-10">
+                  {[
+                    { percent: 30.0, label: "T2", value: "45,000,000đ" },
+                    { percent: 57.0, label: "T3", value: "85,500,000đ" },
+                    { percent: 37.4, label: "T4", value: "56,200,000đ" },
+                    { percent: 73.3, label: "T5", value: "110,000,000đ" },
+                    { percent: 47.2, label: "T6", value: "70,800,000đ" },
+                    { percent: 83.6, label: "T7", value: "125,500,000đ" },
+                    { percent: 63.3, label: "CN", value: "95,000,000đ" }
+                  ].map((item, i) => (
+                    <div key={i} className="w-full h-full flex justify-center items-end group relative cursor-pointer">
+                      {/* Bar */}
+                      <div 
+                        className="w-4/5 bg-primary/30 group-hover:bg-primary transition-all duration-300 rounded-t-lg" 
+                        style={{ height: `${item.percent}%` }}
+                      />
+                      
+                      {/* Tooltip on Hover */}
+                      <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-slate-900 text-white text-xs font-bold rounded-md py-1.5 px-3 block -top-10 whitespace-nowrap z-20 pointer-events-none shadow-lg dark:bg-slate-50 dark:text-slate-900">
+                         {item.value}
+                         {/* Arrow indicator for tooltip */}
+                         <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 dark:bg-slate-50 rotate-45"></div>
+                      </div>
+                      
+                      {/* X-Axis Label */}
+                      <div className="absolute -bottom-6 text-xs font-semibold text-slate-500 group-hover:text-primary transition-colors">
+                        {item.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
              </div>
           </CardContent>
         </Card>
