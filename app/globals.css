@@ -1,9 +1,45 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
 @theme {
   --color-primary: #1a355b;
-  --color-background-light: #f6f7f8;
-  --color-background-dark: #13181f;
+  --color-background-light: var(--bg-light);
+  --color-background-dark: var(--bg-dark);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  :root {
+    --bg-light: #f8fafc; /* Lighter, cleaner background */
+    --background: #ffffff;
+    --foreground: #020817;
+    --input: #e2e8f0;
+    --ring: #0f172a;
+  }
+  .dark {
+    --bg-dark: #0f172a; /* Richer dark slate */
+    --background: #020817;
+    --foreground: #f8fafc;
+    --input: #1e293b;
+    --ring: #cbd5e1;
+  }
+  
+  /* Subtle mesh gradient background for Dashboard WOW factor */
+  body {
+    background-image: radial-gradient(at 0% 0%, hsla(210, 100%, 95%, 0.3) 0px, transparent 50%),
+                      radial-gradient(at 100% 0%, hsla(210, 100%, 95%, 0.3) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+  
+  .dark body {
+    background-image: radial-gradient(at 0% 0%, hsla(215, 50%, 15%, 0.5) 0px, transparent 50%),
+                      radial-gradient(at 100% 0%, hsla(215, 50%, 15%, 0.5) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
 }
 
 /* Custom scrollbar for dark mode */
