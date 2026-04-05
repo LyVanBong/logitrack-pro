@@ -57,8 +57,8 @@ const BrandLogo = () => (
       </defs>
       <rect width="100%" height="100%" fill="url(#lg-sidebar-grid)" />
     </svg>
-    <svg className="relative z-10 w-full h-full" viewBox="0 0 64 48">
-      <text x="32" y="27" fill="white" fontSize="11" fontWeight="900" fontFamily="Inter, system-ui, sans-serif" textAnchor="middle" dominantBaseline="middle" letterSpacing="0">
+    <svg className="relative z-10 w-full h-full" viewBox="0 0 48 48">
+      <text x="24" y="27" fill="white" fontSize="22" fontWeight="900" fontFamily="Inter, system-ui, sans-serif" textAnchor="middle" dominantBaseline="middle" letterSpacing="-1">
         LT
       </text>
     </svg>

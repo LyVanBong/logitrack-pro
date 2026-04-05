@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import NextTopLoader from 'nextjs-toploader';
-import { MarketingPopup } from '@repo/ui';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,7 +64,7 @@ export default function RootLayout({
           easing="ease"
           speed={200}
           shadow="none"
-          template='<div class="fixed inset-0 z-[9999] bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center transition-all duration-300"><div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-slate-900 to-blue-900 shadow-xl flex items-center justify-center animate-pulse ring-1 ring-slate-900/10 relative overflow-hidden"><svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="tt-grid-load" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M 6 0 L 0 0 0 6" fill="none" stroke="currentColor" class="text-white" stroke-width="0.5" /></pattern></defs><rect width="100%" height="100%" fill="url(#tt-grid-load)" /></svg><svg class="relative z-10 w-full h-full" viewBox="0 0 48 48"><text x="24" y="27" fill="white" font-size="19" font-weight="900" font-family="Inter, system-ui, sans-serif" text-anchor="middle" dominant-baseline="middle" letter-spacing="-0.5">LT</text></svg></div><div class="mt-4 text-slate-500 dark:text-slate-400 font-bold tracking-widest text-[10px] uppercase animate-pulse">Đang tải dữ liệu...</div></div><div role="bar" class="hidden"></div>'
+          template='<div class="fixed inset-0 z-[9999] bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center transition-all duration-300"><div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-slate-900 to-blue-900 shadow-xl flex items-center justify-center animate-pulse ring-1 ring-slate-900/10 relative overflow-hidden"><svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="tt-grid-load" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M 6 0 L 0 0 0 6" fill="none" stroke="currentColor" class="text-white" stroke-width="0.5" /></pattern></defs><rect width="100%" height="100%" fill="url(#tt-grid-load)" /></svg><svg class="relative z-10 w-full h-full" viewBox="0 0 48 48"><text x="24" y="27" fill="white" font-size="22" font-weight="900" font-family="Inter, system-ui, sans-serif" text-anchor="middle" dominant-baseline="middle" letter-spacing="-1">LT</text></svg></div><div class="mt-4 text-slate-500 dark:text-slate-400 font-bold tracking-widest text-[10px] uppercase animate-pulse">Đang tải dữ liệu...</div></div><div role="bar" class="hidden"></div>'
           zIndex={1600}
         />
         {/* =======================
@@ -86,7 +85,7 @@ export default function RootLayout({
                       <rect width="100%" height="100%" fill="url(#tt-grid-header)" />
                     </svg>
                     <svg className="relative z-10 w-full h-full" viewBox="0 0 48 48">
-                      <text x="24" y="27" fill="white" fontSize="19" fontWeight="900" fontFamily="Inter, system-ui, sans-serif" textAnchor="middle" dominantBaseline="middle" letterSpacing="-0.5">
+                      <text x="24" y="27" fill="white" fontSize="22" fontWeight="900" fontFamily="Inter, system-ui, sans-serif" textAnchor="middle" dominantBaseline="middle" letterSpacing="-1">
                         LT
                       </text>
                     </svg>
@@ -142,11 +141,11 @@ export default function RootLayout({
                          </defs>
                          <rect width="100%" height="100%" fill="url(#tt-grid-footer)" />
                        </svg>
-                       <svg className="relative z-10 w-full h-full" viewBox="0 0 48 48">
-                         <text x="24" y="27" fill="white" fontSize="19" fontWeight="900" fontFamily="Inter, system-ui, sans-serif" textAnchor="middle" dominantBaseline="middle" letterSpacing="-0.5">
-                           LT
-                         </text>
-                       </svg>
+                         <svg className="relative z-10 w-full h-full" viewBox="0 0 48 48">
+                           <text x="24" y="27" fill="white" fontSize="22" fontWeight="900" fontFamily="Inter, system-ui, sans-serif" textAnchor="middle" dominantBaseline="middle" letterSpacing="-1">
+                             LT
+                           </text>
+                         </svg>
                     </div>
                     <div className="text-[20px] font-black tracking-tighter text-slate-900 leading-none">
                       LT <span className="text-slate-500 font-bold tracking-tight">LOGISTICS</span>
@@ -160,18 +159,18 @@ export default function RootLayout({
               <div className="flex gap-16 md:gap-24">
                  <div className="flex flex-col gap-5">
                     <h4 className="text-[11px] font-bold text-slate-800 uppercase tracking-widest">Công ty</h4>
-                    <Link href="#" className="text-[12px] font-semibold text-slate-400 hover:text-slate-700 uppercase tracking-wider">Tuyển dụng</Link>
-                    <Link href="#" className="text-[12px] font-semibold text-slate-400 hover:text-slate-700 uppercase tracking-wider">Báo cáo phát triển bền vững</Link>
+                    <Link href="#" className="text-[12px] font-semibold text-slate-600 hover:text-slate-700 uppercase tracking-wider">Tuyển dụng</Link>
+                    <Link href="#" className="text-[12px] font-semibold text-slate-600 hover:text-slate-700 uppercase tracking-wider">Báo cáo phát triển bền vững</Link>
                  </div>
                  <div className="flex flex-col gap-5">
                     <h4 className="text-[11px] font-bold text-slate-800 uppercase tracking-widest">Pháp lý</h4>
-                    <Link href="#" className="text-[12px] font-semibold text-slate-400 hover:text-slate-700 uppercase tracking-wider">Chính sách bảo mật</Link>
-                    <Link href="#" className="text-[12px] font-semibold text-slate-400 hover:text-slate-700 uppercase tracking-wider">Điều khoản dịch vụ</Link>
+                    <Link href="#" className="text-[12px] font-semibold text-slate-600 hover:text-slate-700 uppercase tracking-wider">Chính sách bảo mật</Link>
+                    <Link href="#" className="text-[12px] font-semibold text-slate-600 hover:text-slate-700 uppercase tracking-wider">Điều khoản dịch vụ</Link>
                  </div>
               </div>
 
               <div className="flex flex-col lg:items-end text-left lg:text-right max-w-xs">
-                 <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest leading-loose mb-2 mt-auto">
+                 <p className="text-[11px] font-semibold text-slate-600 uppercase tracking-widest leading-loose mb-2 mt-auto">
                    Kiến tạo tương lai chuỗi cung ứng toàn cầu<br/>với sự chính xác và tận tâm
                  </p>
                  <p className="text-[11px] font-bold text-emerald-600 uppercase tracking-widest">
@@ -181,7 +180,6 @@ export default function RootLayout({
 
            </div>
         </footer>
-        <MarketingPopup />
       </body>
     </html>
   );

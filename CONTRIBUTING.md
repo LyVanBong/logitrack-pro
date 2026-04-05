@@ -1,8 +1,8 @@
-# Hướng Dẫn Đóng Góp Cộng Đồng (Contributing to Logitrack Pro)
+# Hướng Dẫn Đóng Góp Cộng Đồng (Contributing to LogiTrack Pro)
 
-Đầu tiên, cảm ơn bạn đã quan tâm và dành thời gian cải thiện **Logitrack Pro**! 
+Đầu tiên, cảm ơn bạn đã quan tâm và dành thời gian cải thiện **LogiTrack Pro**! 
 
-Hệ thống Quản lý Vận tải (TMS) này hướng đến việc trở thành giải pháp hàng đầu cho ngành logistics và ERP. Dưới đây là bộ khung hướng dẫn làm thế nào để xây dựng hệ thống tốt hơn thông qua các Pull Requests (PR) của bạn.
+Hệ thống Quản lý Vận tải (TMS) này sử dụng kiến trúc **Turborepo** và **pnpm workspace**. Dưới đây là bộ khung hướng dẫn làm thế nào để tham gia xây dựng hệ thống tốt hơn thông qua Pull Requests (PR).
 
 ## Quy Trình (Git Flow)
 
@@ -13,44 +13,57 @@ Chúng tôi sử dụng quy trình **Fork & PR**. Tất cả mọi đóng góp d
 ```bash
   git clone https://github.com/TÊN_TÀI_KHOẢN_CỦA_BẠN/logitrack-pro.git
 ```
-3. Khởi tạo một branch (`branch`) mới, đặt tên theo ý nghĩa của tính năng/lỗi mà bạn đang làm việc:
-   - Các tính năng mới (Features): `feat/tên-tính-năng`
-   - Sửa lỗi (Bug fixes): `fix/tên-chữa-lỗi`
+3. Cài đặt các gói phụ thuộc BẮT BUỘC bằng `pnpm` (Lưu ý: Không dùng `npm` hay `yarn`):
+```bash
+corepack enable pnpm # Nếu chưa bật pnpm
+pnpm install
+```
+4. Khởi tạo một branch nhánh làm việc mới:
+   - Các tính năng mới: `feat/tên-tính-năng`
+   - Sửa lỗi: `fix/tên-chữa-lỗi`
    - Nâng cấp UI/UX: `ui/tên-cải-tiến`
-   - Tài liệu (Documentation): `docs/tên-bài-viết`
+   - Tư liệu: `docs/tên-bài-viết`
 
 ```bash
-git checkout -b feat/trip-dispatching-auto
+git checkout -b feat/trip-auto-assign
 ```
 
 ## Khởi Chạy Local Dev
-Vì dự án dùng **Next.js 15+** với kiến trúc **App Router** và **Tailwind v4**, hãy chắc chắn rằng bản Node.js của bạn >= 20.x.
+
+Monorepo này chứa 3 ứng dụng Next.js (ở thư mục `apps/`) và các thư viện giao diện (ở mục `packages/`). Môi trường Node.js hỗ trợ là >= 20.x.
 
 ```bash
-npm install
-cp .env.example .env.local
-npm run dev
+# Thay thế env cho các app bạn muốn truy xuất
+cp apps/erp/.env.example apps/erp/.env.local
+# (Làm tương tự với apps/web và apps/driver nếu có)
+
+# Lệnh này sẽ khởi động ĐỒNG THỜI tất cả Project phụ bằng Turborepo.
+pnpm dev 
 ```
 
-## Viết Code & Quy Ước (Code Conventions)
+## Quy Ước (Code Conventions)
 
-1. **Tuân thủ [Linter]**: Chúng tôi cấu hình sẵn ESLint gốc (`.eslintrc.json`, `eslint.config.mjs`). Chắc chắn rằng trước khi commit, toàn bộ warning hay error đều được giải quyết:
+1. **Tuân thủ Linter**: Chúng tôi cấu hình sẵn ESLint gốc tại `packages/eslint-config`. Trước khi tạo commit, hãy chắc chắn hệ thống không còn lỗi:
 ```bash
-npm run lint
+pnpm lint
+pnpm build
 ```
-2. **Commit Messages**: Vui lòng dùng thông điệp commit rõ ràng (theo chuẩn Conventional Commits):
-    - `feat: thêm module bản đồ theo dõi lộ trình`
-    - `fix: xử lý lỗi tràn layout ở trang dashboard tài xế`
-    - `refactor: tối ưu hóa hooks nạp dữ liệu khách hàng`
+2. **Cấu trúc Thư Mục (Monorepo)**:
+    - `apps/*`: Vui lòng đặt code chỉ đặc thù của chức năng đó (Ví dụ trang đăng nhập nhân viên vào `apps/erp`).
+    - `packages/ui`: Đặt các Code React Components dùng chung cho 2 ứng dụng trở lên (VD Button, Form, Modals) vào đây.
+3. **Commit Messages**: Vui lòng dùng thông điệp commit rõ ràng:
+    - `feat(erp): thêm chức năng bản đồ hành trình`
+    - `fix(ui): sửa lỗi popup tràn layout`
+    - `refactor(driver): tối ưu hooks`
 
 ## Tạo Pull Request (PR)
 
-Khi code của bạn đã đảm bảo độ hoàn thiện, hãy tiến hành mở một Pull Request:
-1. `git push origin YOUR_BRANCH_NAME` (Lên nhánh fork của bạn)
+Khi code của bạn đã hoàn thiện:
+1. Push file lên nhánh của bạn: `git push origin YOUR_BRANCH_NAME` 
 2. Truy cập [Original Repo](https://github.com/LyVanBong/logitrack-pro) và nhấn vào nút **Compare & pull request**.
-3. Vui lòng **điền đầy đủ template PR** mà chúng tôi cung cấp. (Bao gồm Ảnh màn hình UI nếu có chỉnh sửa frontend).
+3. Điền mô tả chi tiết, tốt nhất nên đính kèm ảnh (Screenshot) nếu có thay đổi từ phía Component.
 
 ## Câu Hỏi và Định Hướng (Roadmap)
-Để biết bạn nên làm gì, vui lòng xem qua khu vực [Issues](https://github.com/LyVanBong/logitrack-pro/issues). Hãy nhận các issue chưa có người giải quyết hoặc tự bản thân đề xuất trên đó.
+Vui lòng xem qua khu vực [Issues](https://github.com/LyVanBong/logitrack-pro/issues).
 
-Happy coding! Và chúc mạng lưới logistics ngày càng hiệu quả. 🚚
+Cảm ơn bạn đã đóng góp! Vui lòng tuân thủ chặt chẽ kiến trúc Monorepo để tránh việc phá vỡ chéo (cross-breaking) hệ thống. 🚚

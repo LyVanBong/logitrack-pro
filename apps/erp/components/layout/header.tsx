@@ -202,8 +202,8 @@ export function Header() {
             <div className="p-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800">
               <div className="flex items-center gap-3">
                  <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-slate-900 to-blue-900 dark:from-blue-950 dark:to-slate-900 rounded-lg shadow-lg">
-                    <svg className="w-full h-full" viewBox="0 0 64 48">
-                      <text x="32" y="27" fill="white" fontSize="10" fontWeight="900" fontFamily="Inter, system-ui, sans-serif" textAnchor="middle" dominantBaseline="middle" letterSpacing="0">
+                    <svg className="w-full h-full" viewBox="0 0 48 48">
+                      <text x="24" y="27" fill="white" fontSize="22" fontWeight="900" fontFamily="Inter, system-ui, sans-serif" textAnchor="middle" dominantBaseline="middle" letterSpacing="-1">
                         LT
                       </text>
                     </svg>

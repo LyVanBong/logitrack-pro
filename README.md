@@ -2,15 +2,16 @@
 
 # 🚚 Logitrack Pro
 
-**Hệ thống Quản lý Vận tải (TMS) mã nguồn mở với giao diện chuyên nghiệp và giám sát thời gian thực.**
+**Hệ thống Quản lý Vận tải (TMS) & ERP mã nguồn mở với kiến trúc Monorepo, giao diện chuyên nghiệp và giám sát thời gian thực.**
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-blue?style=flat&logo=react)](https://react.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![Turborepo](https://img.shields.io/badge/Turborepo-2.0-EF4444?style=flat&logo=turborepo)](https://turbo.build/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 [Mô tả tổng quan](#tổng-quan) •
+[Cấu trúc Dự án](#cấu-trúc-dự-án-monorepo) •
 [Tính năng](#tính-năng-nổi-bật) •
 [Cài đặt](#hướng-dẫn-cài-đặt) •
 [Đóng góp](#đóng-góp-contributing)
@@ -19,30 +20,45 @@
 ---
 
 ## 🌟 Tổng quan
-**Logitrack Pro** là phiên bản cộng đồng của nền tảng quản trị vận tải tích hợp (TMS & ERP). Dự án được thiết kế với chuẩn UI tĩnh tinh gọn (Premium SaaS/Flat Design), tập trung vào giám sát đội xe (Fleet Tracking), tối ưu hóa lộ trình tài xế, và quản lý doanh thu theo thời gian thực (Real-time).
+**LogiTrack Pro** là phiên bản cộng đồng của nền tảng quản trị vận tải tích hợp (TMS & ERP). Dự án được thiết kế với chuẩn UI tinh gọn (Premium SaaS/Flat Design), tập trung vào phân mảng các nền tảng từ web công cộng, dashboard điều hành đến app cho tài xế.
 
-Mục tiêu của dự án là chia sẻ một cấu trúc Next.js (App Router) chuẩn doanh nghiệp, nơi bất kì công ty logistics nào cũng có thể fork và tùy biến hệ thống riêng cho mô hình quản trị của mình.
+Mục tiêu của dự án là cung cấp một giải pháp dựa trên kiến trúc **Monorepo** siêu tối ưu sử dụng [Turborepo](https://turbo.build), chuẩn doanh nghiệp, cho phép cộng đồng dễ dàng tùy biến, mở rộng và phát hành hàng loạt ứng dụng phụ trợ từ trong cùng một Repository. 
+
+## 🏗 Cấu trúc Dự án (Monorepo)
+
+Dự án này sử dụng kiến trúc Monorepo quản lý qua `pnpm` workspaces và Turborepo. Mã nguồn được chia thành 2 phần chính: `apps` và `packages`.
+
+### Apps (Ứng dụng)
+- `apps/erp`: Hệ thống quản lý lõi (Core Dashboard) cho nhân sự và ban điều hành logistics.
+- `apps/driver`: Cổng thông tin (Portal) được thiết kế riêng ưu tiên trên thiết bị di động dành cho tài xế cập nhật lộ trình.
+- `apps/web`: Website giới thiệu, tra cứu đơn hàng và dịch vụ dành cho khách hàng đầu cuối.
+
+### Packages (Gói dùng chung)
+- `packages/ui`: Thư viện components dùng chung sử dụng React, Tailwind v4 và Radix UI.
+- `packages/typescript-config`: Cấu hình `tsconfig.json` tiêu chuẩn.
+- `packages/eslint-config`: Cấu hình ESLint tiêu chuẩn để đồng bộ phong cách code.
 
 ## ✨ Tính năng Nổi bật (Core Features)
 
-* **🚦 Dashboard Giám Sát Thời Gian Thực**: Theo dõi năng suất, số lượng xe đang chạy / nằm bãi, với chỉ số xe tổng thể.
-* **📈 Quản lý Doanh Thu**: Số liệu vận hành tức thời với biểu đồ theo tuần trực quan.
-* **🚚 Quản lý Đội Xe & Lái Xe (Fleet & Drivers)**: Xếp hạng tài xế, quản lý nhiên liệu (ví dụ top tài xế tiết kiệm dầu),...
-* **⚠️ Hệ Thống Cảnh Báo Sớm**: Nhắc nhở đăng kiểm, cảnh báo chi phí vượt định mức, cảnh báo chậm công nợ.
-* **🗺 Tích hợp Bản Đồ**: Theo dõi vị trí và chuyến hàng với Leaflet JS.
-* **📱 Responsive Multi-Platform**: Có layout riêng cho cả Mobile (App tài xế) và Desktop (Dashboard điều hành).
+* **🚦 Giao diện Đa nền tảng (Multi-Platform)**: Có layout chuyên biệt từ Client Website, Driver App (Mobile-first) tới ERP Dashboard điều hành (Desktop tối ưu Data-Grid).
+* **📦 Thư viện UI Tập trung**: Sử dụng `packages/ui` giúp đồng bộ giao diện toàn chuỗi ứng dụng mà chỉ cần viết code 1 lần.
+* **📈 Quản lý Doanh Thu**: Số liệu vận hành tức thời với biểu đồ trực quan, tối ưu hóa qua Next.js Server Components.
+* **🚚 Quản lý Đội Xe & Lái Xe**: Xếp hạng tài xế, quản lý nhiên liệu, phân công điều tiết linh hoạt.
+* **⚠️ Hệ Thống Cảnh Báo Sớm**: Nhắc nhở tiến độ xe, chậm chi phí, bảo dưỡng.
+* **🗺 Tích hợp Bản Đồ**: Bản đồ theo dõi lộ trình và vị trí chuyến hàng trong ứng dụng ERP (`leaflet`).
 
 ## 🛠 Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
-- **UI & Styling**: [React 19](https://react.dev), [Tailwind CSS v4](https://tailwindcss.com/)
-- **Components Components**: [shadcn/ui](https://ui.shadcn.com/) (thông qua Radix UI) & [Lucide React](https://lucide.dev/)
-- **Bản đồ (Mapping)**: Canvas Map với `react-leaflet` / `leaflet`
-- **Animations**: `motion` để tạo ra những micro-interactions mượt mà.
+- **Kiến trúc**: [Turborepo](https://turbo.build) + `pnpm` Workspace
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router trên cả 3 app)
+- **Cốt lõi**: [React 19](https://react.dev)
+- **Giao diện & Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **UI Components Components**: [shadcn/ui](https://ui.shadcn.com/) + [Lucide React](https://lucide.dev/)
+- **Tools**: Typescript 5, ESLint 9
 
 ## 🚀 Hướng Dẫn Cài Đặt (Getting Started)
 
-Logitrack Pro yêu cầu **Node.js 20+**. Dưới đây là cách spin-up môi trường local:
+Dự án này CHỈ HỖ TRỢ và yêu cầu dùng **pnpm** làm Package Manager, và **Node.js 20+**. 
 
 ### 1. Clone Source Code
 ```bash
@@ -51,61 +67,45 @@ cd logitrack-pro
 ```
 
 ### 2. Cài Đặt Dependencies
+Đảm bảo bạn đã cài pnpm (nếu chưa: `npm install -g pnpm`). Tại thư mục gốc:
 ```bash
-npm install
-# hoặc
-yarn install
-# hoặc
 pnpm install
 ```
 
-### 3. Cấu Hình Môi Trường
-Tạo file `.env.local` ở thư mục gốc (tham khảo `.env.example`):
-
+### 3. Khởi Chạy Môi Trường Dev (Development Mode)
+Để khởi chạy đồng thời tất cả 3 ứng dụng (`erp`, `driver`, `web`) trong chế độ development:
 ```bash
-cp .env.example .env.local
-```
-Trong `.env.local`, cập nhật:
-```env
-APP_URL="http://localhost:3000"
+pnpm dev
 ```
 
-### 4. Khởi Chạy Môi Trường Dev (Development Mode)
-```bash
-npm run dev
-```
+Turborepo sẽ chạy ứng dụng đồng thời trên các port tương ứng (VD: 3000, 3001, 3002).
 
-Truy cập `http://localhost:3000` trên trình duyệt để thưởng thức thành quả!
+### Lệnh hữu ích khác:
+- Build toàn bộ dự án (`apps/**` và `packages/**`): `pnpm build`
+- Kiểm tra lỗi lint toàn hệ thống: `pnpm lint`
 
 ---
 
 ## 🤝 Roadmap Sắp Tới
 
-1. Bổ sung trọn bộ hệ thống Mobile App Layout cho Tài Xế (`app/(mobile)`).
+1. Tích hợp Backend API dùng chung, hoàn thiện hệ cơ sở dữ liệu phân tán.
 2. Viết Integration cho hệ thống Auto Dispatching tự động (chia ca nhận hàng).
-3. Hỗ trợ i18n (Đa ngôn ngữ: Tiếng Việt, English).
+3. Hỗ trợ i18n (Đa ngôn ngữ: Tiếng Việt, English) trên module thư viện chung.
 4. Viết End-to-End Test Suite.
 
 ---
 
 ## 💡 Đóng Góp (Contributing)
 
-Logitrack Pro là mã nguồn mở, vì thế chúng tôi cực kì hoan nghênh những PR mới đến từ cộng đồng. Hãy chung tay mở rộng và làm mượt mà hơn bộ giải pháp vận tải này!
-
-Để đóng góp:
-1. Fork dự án 
-2. Tạo Feature Branch mới (`git checkout -b feature/AmazingFeature`) 
-3. Commit những thay đổi (`git commit -m 'feat: Add some amazing feature'`)
-4. Push lên repo cá nhân (`git push origin feature/AmazingFeature`)
-5. Mở một **Pull Request**
+LogiTrack Pro là mã nguồn mở, chúng tôi cực kỳ hoan nghênh những PR mới đến từ cộng đồng. Hãy chung tay hoàn thiện giải pháp Monorepo Logistics này!
 
 Chi tiết hơn, vui lòng đọc [CONTRIBUTING.md](./CONTRIBUTING.md) và [Quy Tắc Ứng Xử](./CODE_OF_CONDUCT.md).
 
 ## 📜 Giấy Phép (License)
 
-Dự án này được phân phối dưới hình thức mã nguồn mở, theo giấy phép **MIT**. Xem tệp [LICENSE](./LICENSE) để biết thông tin chi tiết. 
+Dự án này được phân phối dưới hình thức mã nguồn mở, theo giấy phép **MIT**. Xem tệp [LICENSE](./LICENSE) để biết thông tin.
 
 ---
 <div align="center">
-Được xây dựng với ❤️ bởi Cộng Đồng Open Source.
+Được tối ưu hóa bằng kiến trúc Turborepo ❤️ Phát triển bởi Cộng Đồng Open Source.
 </div>

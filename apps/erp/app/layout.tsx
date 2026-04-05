@@ -4,7 +4,6 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from 'sonner';
 import NextTopLoader from 'nextjs-toploader';
-import { MarketingPopup } from '@repo/ui';
 
 const inter = Inter({ subsets: ['latin', 'vietnamese'] });
 
@@ -47,7 +46,6 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         >
           {children}
           <Toaster position="bottom-right" richColors theme="system" />
-          <MarketingPopup />
         </ThemeProvider>
       </body>
     </html>
