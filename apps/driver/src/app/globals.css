@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@source "./"; /* Quét trực tiếp thư mục hiển tại (src/app) */
+@source "../../../packages/ui/src"; /* Quét UI package của Monorepo */
+
+@theme {
+  --color-tt-primary: #006948;
+  --color-tt-primary-container: #00855d;
+  --color-tt-on-primary: #ffffff;
+  
+  --color-tt-surface: #f9f9ff;
+  --color-tt-surface-low: #f1f3ff;
+  --color-tt-surface-lowest: #ffffff;
+  --color-tt-surface-high: #e1e8fd;
+  --color-tt-surface-highest: #dce2f7;
+  
+  --color-tt-on-surface: #141b2b;
+  --color-tt-on-surface-variant: #3d4a42;
+  
+  --color-tt-secondary: #3e6753;
+  --color-tt-tertiary-container: #ba5551;
+  --color-tt-primary-fixed: #85f8c4;
+  
+  --color-tt-outline-variant: #bccac0;
+  
+  --color-tt-warning: #f97316;
+  --color-tt-warning-container: #ffedd5;
+  --color-tt-info: #2563eb;
+  --color-tt-info-container: #dbeafe;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+body {
+  background-color: var(--color-tt-surface);
+  color: var(--color-tt-on-surface);
+  -webkit-tap-highlight-color: transparent; /* Remove active tap highlight on mobile for clean UX */
+  overscroll-behavior-y: none; /* Prevent pull-to-refresh on mobile for app-like feel */
+}
